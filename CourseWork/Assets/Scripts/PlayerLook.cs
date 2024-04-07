@@ -2,10 +2,10 @@
 
 public class PlayerLook : MonoBehaviour
 {
-    public Camera cam;
+    public Camera mainCamera;
     private float xRotation = 0f;
-    public float xSensivity = 20f;
-    public float ySensivity = 20f;
+    public float xSensivity = 30f;
+    public float ySensivity = 30f;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class PlayerLook : MonoBehaviour
         xRotation -= (mouseY * Time.deltaTime) * ySensivity;
         xRotation = Mathf.Clamp(xRotation, -90, 90f);
 
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensivity);
     }
 }
