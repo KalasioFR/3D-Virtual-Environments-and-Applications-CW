@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class FPSDisplay : MonoBehaviour
 {
-	[SerializeField] private Color textColor = Color.black;
 	[SerializeField] private int fontSize = 12;
 	[SerializeField] private float updatePeriod = 0.5f;
-	[SerializeField] private int lowFpsThreshold = 60;
 
 	private float fpsAvg = 0f;
 	private float msecAvg = 0f;
@@ -35,11 +33,11 @@ public class FPSDisplay : MonoBehaviour
 
 		GUIStyle style = new GUIStyle();
 
-		Rect rect = new Rect(5, 5, w, h);
-
 		style.alignment = TextAnchor.UpperLeft;
 		style.fontSize = fontSize;
-		style.normal.textColor = fpsAvg > lowFpsThreshold ? textColor : Color.red;
+		style.normal.textColor = Color.green;
+
+		Rect rect = new Rect(5, 5, w, h);
 
 		string text = $"{fpsAvg:0.} FPS ({msecAvg:0.0}ms)";
 
