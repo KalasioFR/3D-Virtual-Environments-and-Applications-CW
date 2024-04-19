@@ -27,12 +27,12 @@ public class PlayerMotor : MonoBehaviour
         if(sprinting)
         {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", Input.GetAxisRaw("Vertical") != 0);
+            animator.SetBool("isRunning", Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0);
         }
         else
         {
             animator.SetBool("isRunning", false);
-            animator.SetBool("isWalking", Input.GetAxisRaw("Vertical") != 0);
+            animator.SetBool("isWalking", Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0);
         }
         animator.SetBool("isJumping", !controller.isGrounded);
     }
