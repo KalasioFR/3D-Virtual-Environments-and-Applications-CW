@@ -7,13 +7,11 @@ public class NPCMotor : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-    public Animator animator;
 
 
     void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it

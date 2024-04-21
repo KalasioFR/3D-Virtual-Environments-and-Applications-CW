@@ -5,6 +5,7 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     public Animator animator;
+    public Transform characterModel;
     private bool isGrounded;
     private bool sprinting = false;
     public float speed = 2f;
@@ -14,7 +15,10 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
+
+        characterModel = transform.GetChild(0);
+
         animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
         animator.SetBool("isJumping", false);
@@ -23,6 +27,12 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         isGrounded = controller.isGrounded;
+
+        if (characterModel != null)
+        {
+            characterModel.position = transform.position;
+            characterModel.rotation = transform.rotation;
+        }
 
         if(sprinting)
         {
