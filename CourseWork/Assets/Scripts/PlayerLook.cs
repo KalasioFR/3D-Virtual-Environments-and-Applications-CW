@@ -21,6 +21,6 @@ public class PlayerLook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90, 90f);
 
         mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensivity);
+        transform.Rotate((mouseX * Time.deltaTime) * xSensivity * Vector3.up);
     }
 }

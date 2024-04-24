@@ -30,8 +30,7 @@ public class PlayerMotor : MonoBehaviour
 
         if (characterModel != null)
         {
-            characterModel.position = transform.position;
-            characterModel.rotation = transform.rotation;
+            characterModel.SetPositionAndRotation(transform.position, transform.rotation);
         }
 
         if(sprinting)
@@ -52,7 +51,7 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        controller.Move(speed * Time.deltaTime * transform.TransformDirection(moveDirection));
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;

@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FPSDisplay : MonoBehaviour
 {
-	[SerializeField] private int fontSize = 12;
+	[SerializeField] private int fontSize = 16;
 	[SerializeField] private float updatePeriod = 0.5f;
 
-	private float fpsAvg = 0f;
-	private float msecAvg = 0f;
+	private float fpsAverage = 0f;
+	private float latencyAverage = 0f;
 	private float lastUpdated = 0f;
 
 	void Start()
@@ -18,11 +18,11 @@ public class FPSDisplay : MonoBehaviour
 	{
 		if (Time.time - lastUpdated > updatePeriod)
 		{
-			float fps = 1.0f / Time.unscaledDeltaTime;
-			fpsAvg = (fpsAvg + fps) / 2;
+			float fps = 1f / Time.unscaledDeltaTime;
+			fpsAverage = (fpsAverage + fps) / 2;
 
-			float msec = Time.unscaledDeltaTime * 1000.0f;
-			msecAvg = (msecAvg + msec) / 2;
+			float latency = Time.unscaledDeltaTime * 1000f;
+			latencyAverage = (latencyAverage + latency) / 2;
 			lastUpdated = Time.time;
 		}
 	}
@@ -31,15 +31,17 @@ public class FPSDisplay : MonoBehaviour
 	{
 		int w = Screen.width, h = Screen.height;
 
-		GUIStyle style = new GUIStyle();
+        GUIStyle style = new()
+        {
+            alignment = TextAnchor.UpperLeft,
+            fontSize = fontSize,
+        };
 
-		style.alignment = TextAnchor.UpperLeft;
-		style.fontSize = fontSize;
-		style.normal.textColor = Color.green;
+        style.normal.textColor = Color.green;
 
-		Rect rect = new Rect(5, 5, w, h);
+		Rect rect = new(5, 5, w, h);
 
-		string text = $"{fpsAvg:0.} FPS ({msecAvg:0.0}ms)";
+		string text = $"{fpsAverage:0.} FPS ({latencyAverage:0.0}ms)";
 
 		GUI.Label(rect, text, style);
 	}

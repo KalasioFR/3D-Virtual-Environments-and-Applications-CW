@@ -12,14 +12,11 @@ public class ConversationTrigger : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        conversationButtonCanva.SetActive(true);
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            conversationButtonCanva.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                Cursor.lockState = CursorLockMode.None;
-                ConversationManager.Instance.StartConversation(conversation);
-            }
+            Cursor.lockState = CursorLockMode.None;
+            ConversationManager.Instance.StartConversation(conversation);
         }
     }
     private void OnTriggerExit(Collider other)
