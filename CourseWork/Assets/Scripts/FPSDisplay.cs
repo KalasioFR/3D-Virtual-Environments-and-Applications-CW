@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class FPSDisplay : MonoBehaviour
 {
-	[SerializeField] private int fontSize = 16;
-	[SerializeField] private float updatePeriod = 0.5f;
-
+	private readonly int fontSize = 16;
+	private readonly float updatePeriod = 0.25f;
 	private float fpsAverage = 0f;
 	private float latencyAverage = 0f;
 	private float lastUpdated = 0f;
 
 	void Start()
 	{
+		#if UNITY_EDITOR
 		Application.targetFrameRate = 60;
+		#endif
+
+		QualitySettings.vSyncCount = 1;
 	}
 
 	void Update()
@@ -29,7 +32,8 @@ public class FPSDisplay : MonoBehaviour
 
 	void OnGUI()
 	{
-		int w = Screen.width, h = Screen.height;
+		int w = Screen.width;
+		int h = Screen.height;
 
         GUIStyle style = new()
         {
