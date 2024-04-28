@@ -65,7 +65,7 @@ public class PlayerMotor : MonoBehaviour
         sprinting = !sprinting;
         if (sprinting)
         {
-            speed = 5;
+            speed = 6;
         }
         else
         {
