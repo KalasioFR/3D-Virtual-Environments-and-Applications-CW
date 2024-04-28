@@ -6,11 +6,13 @@ public class LightSwitchController : MonoBehaviour
     private bool isFKeyPressed = false;
     public Light pointLight;
     public Animator animator;
+    public GameObject lightSwitchButtonCanva;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         pointLight.enabled = false;
+        lightSwitchButtonCanva.SetActive(false);
     }
 
     private void Update()
@@ -27,6 +29,8 @@ public class LightSwitchController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        lightSwitchButtonCanva.SetActive(true);
+
         if (isFKeyPressed)
         {
             isFKeyPressed = false;
@@ -44,5 +48,10 @@ public class LightSwitchController : MonoBehaviour
                 pointLight.enabled = true;
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        lightSwitchButtonCanva.SetActive(false);
     }
 }

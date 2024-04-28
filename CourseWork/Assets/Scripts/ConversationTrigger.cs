@@ -19,6 +19,7 @@ public class ConversationTrigger : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         conversationButtonCanva.SetActive(true);
+        
         if(Input.GetKeyDown(KeyCode.F))
         {
             playerLook.enabled = false;
